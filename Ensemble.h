@@ -18,6 +18,13 @@
 
 using namespace std;
 
+enum crduEstInclus {
+    NON_INCLUSION,
+    INCLUSION_LARGE,
+    INCLUSION_STRICTE
+};
+
+
 
 class Ensemble
 {
@@ -34,7 +41,7 @@ public:
 
 //    crduEstInclus EstInclus (const Ensemble & unEnsemble) const;
 //
-//    crduAjouter Ajouter (int aAjouter);
+    crduAjouter Ajouter (int aAjouter);
 //
 //    unsigned int Ajuster (int delta);
 //

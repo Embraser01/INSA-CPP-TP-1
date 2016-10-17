@@ -24,6 +24,12 @@ enum crduEstInclus {
     INCLUSION_STRICTE
 };
 
+enum crduAjouter {
+    DEJA_PRESENT,
+    PLEIN,
+    AJOUTE
+};
+
 
 
 class Ensemble

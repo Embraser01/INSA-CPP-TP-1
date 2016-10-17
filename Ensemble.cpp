@@ -178,10 +178,12 @@ bool Ensemble::Retirer(int element)
 {
     if (currentCard == 0)
     {
+        cardMax = currentCard;
         return false;
     }
     if (elements[0] > element || elements[currentCard - 1] < element)
     {
+        cardMax = currentCard;
         return false;
     }
     //maintenant on est sur que element est contenu dans notre ensemble

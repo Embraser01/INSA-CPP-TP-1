@@ -39,10 +39,11 @@ void Ensemble::Afficher()
 
     } else if (this->currentCard > 1)
     {
-        for (int i=0; i<currentCard-1; i++){
-            cout <<this->elements[i] <<",";
+        for (int i = 0; i < currentCard - 1; i++)
+        {
+            cout << this->elements[i] << ",";
         }
-        cout <<this->elements[currentCard-1];
+        cout << this->elements[currentCard - 1];
 
     }
 
@@ -50,12 +51,15 @@ void Ensemble::Afficher()
 
 }
 
-bool Ensemble::EstEgal(const Ensemble &unEnsemble) const {
-    if(Ensemble->cardMax != unEnsemble.cardMax || Ensemble->currentCard!=unEnsemble.currentCard){
-        return false;
-    }
-    for (int i=0;i<Ensemble.currentCard;i++){
-        if (Ensemble->elements[i] != unEnsemble->elements[i]){
+bool Ensemble::EstEgal(const Ensemble &unEnsemble) const
+{
+    if (Ensemble->currentCard != unEnsemble.currentCard) return false;
+
+    
+    for (int i = 0; i < Ensemble.currentCard; i++)
+    {
+        if (Ensemble->elements[i] != unEnsemble->elements[i])
+        {
             return false;
         }
     }

@@ -31,6 +31,10 @@ void Ensemble::Afficher()
 
     } else if (this->currentCard > 1)
     {
+        for (int i=0; i<currentCard-1; i++){
+            cout <<this->elements[i] <<",";
+        }
+        cout <<this->elements[currentCard-1];
 
     }
 

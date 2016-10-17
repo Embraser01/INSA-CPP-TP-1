@@ -135,7 +135,7 @@ crduEstInclus Ensemble::EstInclus(const Ensemble &unEnsemble) const
     for (int i = 0; i < currentCard; i++)
     {
         // Tab triés donc pas de réinitialisation
-        for (j; unEnsemble.elements[j] < elements[i]; j++)
+        for (; unEnsemble.elements[j] < elements[i]; j++)
         {}
         if (elements[i] != unEnsemble.elements[j])
         {
@@ -166,6 +166,9 @@ int Ensemble::Reunir(const Ensemble &unEnsemble)
                 break;
             case AJOUTE:
                 nbAdded++;
+                break;
+            default:
+                //deja present
                 break;
         }
     }

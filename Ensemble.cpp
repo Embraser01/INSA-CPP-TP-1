@@ -178,10 +178,8 @@ bool Ensemble::Retirer(int element)
 {
     if (currentCard == 0)
     {
-        return false;
-    }
-    if (elements[0] > element || elements[currentCard - 1] < element)
-    {
+        cardMax = 0;
+        delete[] elements;
         return false;
     }
     //maintenant on est sur que element est contenu dans notre ensemble
@@ -212,6 +210,22 @@ bool Ensemble::Retirer(int element)
     return false;
 }
 
+unsigned int Ensemble::Retirer(const Ensemble &unEnsemble)
+{
+    int a = CARD_MAX;
+    int k=0;
+    for (int i; i < unEnsemble.cardMax; i++)
+    {
+        if (Retirer(unEnsemble.elements[i])){
+            k++;
+        }
+    }
+    Ajuster(a - cardMax);
+    return (k);
+}
+
+
+
 void Ensemble::bubbleSort()
 {
     // From http://mathbits.com/MathBits/CompSci/Arrays/Bubble.htm
@@ -238,5 +252,8 @@ void Ensemble::bubbleSort()
 
 Ensemble::~Ensemble()
 {
-    delete[] this->elements;
+    if (cardMax > 0)
+    {
+        delete[] this->elements;
+    }
 }

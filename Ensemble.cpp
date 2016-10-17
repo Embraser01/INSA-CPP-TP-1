@@ -4,36 +4,43 @@
 
 #include "Ensemble.h"
 
-Ensemble::Ensemble(unsigned int cardMax) {
+Ensemble::Ensemble(unsigned int cardMax)
+{
     this->elements = new int[cardMax];
     this->cardMax = cardMax;
     this->currentCard = 0;
 }
 
-Ensemble::Ensemble(int *t, unsigned int nbElements) {
+Ensemble::Ensemble(int *t, unsigned int nbElements)
+{
 
     this->elements = new int[nbElements];
     this->cardMax = nbElements;
     this->currentCard = 0;
 
-    for (int i = 0; i < nbElements; i++) {
+    for (int i = 0; i < nbElements; i++)
+    {
         this->Ajouter(t[i]);
     }
 }
 
 
-void Ensemble::Afficher() {
+void Ensemble::Afficher()
+{
     cout << this->currentCard << "\r\n";
     cout << this->cardMax << "\r\n";
 
     cout << "{";
 
 
-    if (this->currentCard == 1) {
+    if (this->currentCard == 1)
+    {
         cout << this->elements[0];
 
-    } else if (this->currentCard > 1) {
-        for (int i = 0; i < currentCard - 1; i++) {
+    } else if (this->currentCard > 1)
+    {
+        for (int i = 0; i < currentCard - 1; i++)
+        {
             cout << this->elements[i] << ",";
         }
         cout << this->elements[currentCard - 1];
@@ -44,34 +51,43 @@ void Ensemble::Afficher() {
 
 }
 
-crduAjouter Ensemble::Ajouter(int aAjouter) {
-    if (cardMax == 0) {
+crduAjouter Ensemble::Ajouter(int aAjouter)
+{
+    if (cardMax == 0)
+    {
         return PLEIN;
     }
     //on verifie si l'element est present,
     // a  la fin, i est l'index
-    for (int i = 0; i < currentCard; i++) {
-        if (elements[i] == aAjouter) {
+    for (int i = 0; i < currentCard; i++)
+    {
+        if (elements[i] == aAjouter)
+        {
             return DEJA_PRESENT;
         }
     }
-    if (this->cardMax > this->currentCard) {
+    if (this->cardMax > this->currentCard)
+    {
         elements[currentCard] = aAjouter;
         this->currentCard++;
         this->bubbleSort();
         return AJOUTE;
-    } else {
+    } else
+    {
         //renvoyer plein
         return PLEIN;
     }
 }
 
-bool Ensemble::EstEgal(const Ensemble &unEnsemble) const {
+bool Ensemble::EstEgal(const Ensemble &unEnsemble) const
+{
     if (this->currentCard != unEnsemble.currentCard) return false;
 
 
-    for (int i = 0; i < this->currentCard; i++) {
-        if (this->elements[i] != unEnsemble.elements[i]) {
+    for (int i = 0; i < this->currentCard; i++)
+    {
+        if (this->elements[i] != unEnsemble.elements[i])
+        {
             return false;
         }
     }
@@ -79,15 +95,18 @@ bool Ensemble::EstEgal(const Ensemble &unEnsemble) const {
 }
 
 
-void Ensemble::bubbleSort() {
+void Ensemble::bubbleSort()
+{
     // From http://mathbits.com/MathBits/CompSci/Arrays/Bubble.htm
 
     int i, j, flag = 1;    // set flag to 1 to start first pass
     int temp;             // holding variable
     int numLength = this->currentCard;
-    for (i = 1; (i <= numLength) && flag; i++) {
+    for (i = 1; (i <= numLength) && flag; i++)
+    {
         flag = 0;
-        for (j = 0; j < (numLength - 1); j++) {
+        for (j = 0; j < (numLength - 1); j++)
+        {
             if (elements[j + 1] < elements[j])      // ascending order simply changes to <
             {
                 temp = elements[j];             // swap elements
@@ -101,21 +120,26 @@ void Ensemble::bubbleSort() {
 }
 
 
-unsigned int Ensemble::Ajuster(int delta) {
-    if (delta == 0) {
+unsigned int Ensemble::Ajuster(int delta)
+{
+    if (delta == 0)
+    {
         return cardMax;
     }
 
     int *nouveauEnsemble;
     int nouvelleCard;
-    if (delta > 0) {
+    if (delta > 0)
+    {
         nouvelleCard = cardMax + delta;
         nouveauEnsemble = new int[cardMax + delta];
-    } else {
+    } else
+    {
         nouvelleCard = (cardMax + delta > currentCard) ? cardMax + delta : currentCard;
         nouveauEnsemble = new int[nouvelleCard];
     }
-    for (int i = 0; i < currentCard; i++) {
+    for (int i = 0; i < currentCard; i++)
+    {
         nouveauEnsemble[i] = elements[i];
     }
     cardMax = nouvelleCard;
@@ -125,39 +149,47 @@ unsigned int Ensemble::Ajuster(int delta) {
 }
 
 
-crduEstInclus Ensemble::EstInclus(const Ensemble &unEnsemble) const {
-    if (EstEgal(unEnsemble)) {
+crduEstInclus Ensemble::EstInclus(const Ensemble &unEnsemble) const
+{
+    if (EstEgal(unEnsemble))
+    {
         return INCLUSION_LARGE;
     }
     int j = 0;
-    for (int i = 0; i < currentCard; i++) {
+    for (int i = 0; i < currentCard; i++)
+    {
         // Tab triés donc pas de réinitialisation
-        for (j; unEnsemble.elements[j] < elements[i]; j++) {}
-        if (elements[i] != unEnsemble.elements[j]) {
+        for (j; unEnsemble.elements[j] < elements[i]; j++)
+        {}
+        if (elements[i] != unEnsemble.elements[j])
+        {
             return NON_INCLUSION;
         }
     }
     return INCLUSION_STRICTE;
 }
 
-bool Ensemble::Retirer(int element) {
-    if (currentCard == 0) {
+bool Ensemble::Retirer(int element)
+{
+    if (currentCard == 0)
+    {
         return false;
     }
-    if (elements[0] < element || elements[currentCard - 1] < element) {
+    if (elements[0] < element || elements[currentCard - 1] < element)
+    {
         return false;
     }
     //maintenant on est sur que element est contenu dans notre ensemble
-    int * nouveauEnsemble = new int [currentCard-1];
-    int  j = 0;
-    for (int i=0;i<cardMax;i++)
+    int *nouveauEnsemble = new int[currentCard - 1];
+    int j = 0;
+    for (int i = 0; i < cardMax; i++)
     {
         int n = elements[i];
-        if(n!=element)
+        if (n != element)
         {
             //on fait une post incrementation, pour modifier la case
             //avant d'avancer le compteur
-            nouveauEnsemble[j++]=n;
+            nouveauEnsemble[j++] = n;
         }
     }
     elements = nouveauEnsemble;
@@ -165,15 +197,18 @@ bool Ensemble::Retirer(int element) {
     cardMax = currentCard;
 }
 
-void Ensemble::bubbleSort() {
+void Ensemble::bubbleSort()
+{
     // From http://mathbits.com/MathBits/CompSci/Arrays/Bubble.htm
 
     int i, j, flag = 1;    // set flag to 1 to start first pass
     int temp;             // holding variable
     int numLength = this->currentCard;
-    for (i = 1; (i <= numLength) && flag; i++) {
+    for (i = 1; (i <= numLength) && flag; i++)
+    {
         flag = 0;
-        for (j = 0; j < (numLength - 1); j++) {
+        for (j = 0; j < (numLength - 1); j++)
+        {
             if (elements[j + 1] < elements[j])      // ascending order simply changes to <
             {
                 temp = elements[j];             // swap elements
@@ -186,6 +221,7 @@ void Ensemble::bubbleSort() {
     return;   //arrays are passed to functions by address; nothing is returned
 }
 
-Ensemble::~Ensemble() {
+Ensemble::~Ensemble()
+{
     delete[] this->elements;
 }

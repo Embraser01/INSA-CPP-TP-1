@@ -3,3 +3,8 @@
 //
 
 #include "Ensemble.h"
+
+Ensemble::~Ensemble()
+{
+    delete[] collection;
+}

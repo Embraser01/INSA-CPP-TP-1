@@ -169,6 +169,35 @@ crduEstInclus Ensemble::EstInclus(const Ensemble &unEnsemble) const
     return INCLUSION_STRICTE;
 }
 
+int Ensemble::Reunir(const Ensemble &unEnsemble)
+{
+
+    int nbAdded = 0;
+    bool isAjusted = false;
+    crduAjouter state;
+
+    for (int i = 0; i < unEnsemble.currentCard; ++i)
+    {
+        state = Ajouter(unEnsemble.elements[i]);
+
+        switch (state)
+        {
+            case PLEIN:
+                Ajuster(1);
+                isAjusted = true;
+                Ajouter(unEnsemble.elements[i]);
+                nbAdded++;
+                break;
+            case AJOUTE:
+                nbAdded++;
+                break;
+        }
+    }
+
+    return isAjusted ? -nbAdded : nbAdded;
+}
+
+
 Ensemble::~Ensemble()
 {
     delete[] this->elements;

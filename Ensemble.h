@@ -58,6 +58,8 @@ private:
     int cardMax;
     int currentCard;
     int *elements;
+
+    void bubbleSort();
 };
 
 #endif //TP_C_ENSEMBLE_H

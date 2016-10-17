@@ -3,3 +3,9 @@
 //
 
 #include "Ensemble.h"
+
+
+Ensemble::Ensemble(int *t, unsigned int nbElements)
+{
+
+}

@@ -124,6 +124,33 @@ void Ensemble::bubbleSort()
     return;   //arrays are passed to functions by address; nothing is returned
 }
 
+unsigned int Ajuster (int delta)
+{
+    if(delta==0)
+    {
+        return cardMax;
+    }else
+    {
+        int *nouveauEnsemble;
+        int nouvelleCard;
+        if(delta>0){
+            novuelleCard = cardMax+delta;
+            nouveauEnsemble = new int[cardMax+delta];
+        }else{
+            nouvelleCard =(cardMax+delta>currentCard)?cardMax+delta:currentCard;
+            nouveauEnsemble = new int[nouvelleCard];
+        }
+        for(int i=o;i<currentCard;i++){
+            nouveauEnsemble[i]= elements[i];
+        }
+        cardMax = nouvelleCard;
+        elements = nouveauEnsemble;
+
+    }
+
+}
+
+
 
 Ensemble::~Ensemble()
 {

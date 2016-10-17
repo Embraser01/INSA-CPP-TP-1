@@ -22,15 +22,15 @@ using namespace std;
 class Ensemble
 {
 public:
-    Ensemble (unsigned int cardMax = CARD_MAX);
+    Ensemble(unsigned int cardMax = CARD_MAX);
 
-    Ensemble (int t[], unsigned int nbElements);
+    Ensemble(int t[], unsigned int nbElements);
 
     virtual ~Ensemble();
 
-    void Afficher (void);
+    void Afficher(void);
 
-    bool EstEgal (const Ensemble & unEnsemble) const;
+    bool EstEgal(const Ensemble &unEnsemble) const;
 
 //    crduEstInclus EstInclus (const Ensemble & unEnsemble) const;
 //
@@ -50,7 +50,7 @@ public:
 private:
     int cardMax;
     int currentCard;
-    int elements;
+    int *elements;
 };
 
 #endif //TP_C_ENSEMBLE_H

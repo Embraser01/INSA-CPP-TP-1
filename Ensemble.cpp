@@ -13,3 +13,8 @@ Ensemble::Ensemble(int *t, unsigned int nbElements)
 {
 
 }
+
+Ensemble::~Ensemble()
+{
+    delete[] collection;
+}

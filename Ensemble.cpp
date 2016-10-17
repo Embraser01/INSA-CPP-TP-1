@@ -143,6 +143,7 @@ unsigned int Ensemble::Ajuster(int delta)
         nouveauEnsemble[i] = elements[i];
     }
     cardMax = nouvelleCard;
+    delete[] elements;// gare aux fuites de memeoire
     elements = nouveauEnsemble;
 
     return cardMax;
@@ -197,6 +198,59 @@ int Ensemble::Reunir(const Ensemble &unEnsemble)
     return isAjusted ? -nbAdded : nbAdded;
 }
 
+
+bool Ensemble::Retirer(int element)
+{
+    if (currentCard == 0)
+    {
+        return false;
+    }
+    if (elements[0] < element || elements[currentCard - 1] < element)
+    {
+        return false;
+    }
+    //maintenant on est sur que element est contenu dans notre ensemble
+    int *nouveauEnsemble = new int[currentCard - 1];
+    int j = 0;
+    for (int i = 0; i < cardMax; i++)
+    {
+        int n = elements[i];
+        if (n != element)
+        {
+            //on fait une post incrementation, pour modifier la case
+            //avant d'avancer le compteur
+            nouveauEnsemble[j++] = n;
+        }
+    }
+    delete[] elements;
+    elements = nouveauEnsemble;
+    currentCard--;
+    cardMax = currentCard;
+}
+
+void Ensemble::bubbleSort()
+{
+    // From http://mathbits.com/MathBits/CompSci/Arrays/Bubble.htm
+
+    int i, j, flag = 1;    // set flag to 1 to start first pass
+    int temp;             // holding variable
+    int numLength = this->currentCard;
+    for (i = 1; (i <= numLength) && flag; i++)
+    {
+        flag = 0;
+        for (j = 0; j < (numLength - 1); j++)
+        {
+            if (elements[j + 1] < elements[j])      // ascending order simply changes to <
+            {
+                temp = elements[j];             // swap elements
+                elements[j] = elements[j + 1];
+                elements[j + 1] = temp;
+                flag = 1;               // indicates that a swap occurred.
+            }
+        }
+    }
+    return;   //arrays are passed to functions by address; nothing is returned
+}
 
 Ensemble::~Ensemble()
 {

@@ -96,3 +96,36 @@ Ensemble::~Ensemble()
 {
     delete[] this->elements;
 }
+
+crduAjouter Ensemble::Ajouter(int aAjouter)
+{
+    if (cardMax == 0){
+        return crduAjouter::PLEIN;
+    }
+    //on verifie si l'element est present,
+    // a  la fin, i est l'index
+    int d = currentCard/2;
+    int i = d;
+    while( d!=0 )
+    {
+        d =  d/2;
+        int n = this->elements[i];
+        if(n == aAjouter){
+            return crduAjouter::DEJA_PRESENT;
+        }else if(aAjouter > n)
+        {
+            i-= d;
+        }else{
+            i+= d;
+        }
+    }
+    if(this->cardMax > this->currentCard)
+    {
+        elements[currentCard]=aAjouter;
+        //appel a la fonction de tri
+        return crduAjouter::AJOUTE;
+    } else{
+        //renvoyer plein
+        return crduAjouter::PLEIN;
+    }
+}

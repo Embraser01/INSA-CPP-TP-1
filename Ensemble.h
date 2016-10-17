@@ -39,8 +39,8 @@ public:
 
     bool EstEgal(const Ensemble &unEnsemble) const;
 
-//    crduEstInclus EstInclus (const Ensemble & unEnsemble) const;
-//
+    crduEstInclus EstInclus (const Ensemble & unEnsemble) const;
+
     crduAjouter Ajouter (int aAjouter);
 //
 //    unsigned int Ajuster (int delta);

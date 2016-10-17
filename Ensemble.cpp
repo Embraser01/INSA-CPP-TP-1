@@ -51,7 +51,7 @@ void Ensemble::Afficher()
 }
 
 bool Ensemble::EstEgal(const Ensemble &unEnsemble) const {
-    if(Ensemble->cardMax != unEnsemble.cardMax || Ensemble->currentCard!=unEnsemble.currentCard){
+    if(Ensemble->currentCard!=unEnsemble.currentCard){
         return false;
     }
     for (int i=0;i<Ensemble.currentCard;i++){
@@ -60,6 +60,9 @@ bool Ensemble::EstEgal(const Ensemble &unEnsemble) const {
         }
     }
     return true;
+}
+bool Ensemble::EstInclus(const Ensemble &unEnsemble) const {
+
 }
 
 Ensemble::~Ensemble()

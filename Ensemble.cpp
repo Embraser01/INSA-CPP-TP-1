@@ -3,3 +3,7 @@
 //
 
 #include "Ensemble.h"
+Ensemble ::Ensemble(unsigned int cardMax) {
+    collection = new int [cardMax];
+}
+

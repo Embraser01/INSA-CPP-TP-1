@@ -3,8 +3,7 @@
 //
 
 #include "Ensemble.h"
-
-Ensemble::~Ensemble()
-{
-    delete[] collection;
+Ensemble ::Ensemble(unsigned int cardMax) {
+    collection = new int [cardMax];
 }
+

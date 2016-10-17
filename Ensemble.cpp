@@ -213,6 +213,7 @@ bool Ensemble::Retirer(int element)
 
 unsigned int Ensemble::Retirer(const Ensemble &unEnsemble)
 {
+    if (unEnsemble.currentCard==0|| unEnsemble.cardMax ==0){return 0;}
     int a = cardMax;
     int k=0;
     for (int i=0; i < unEnsemble.cardMax; i++)

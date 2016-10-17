@@ -53,45 +53,40 @@ void Ensemble::Afficher()
 
 crduAjouter Ensemble::Ajouter(int aAjouter)
 {
-    if (cardMax == 0){
-        return crduAjouter::PLEIN;
+    if (cardMax == 0)
+    {
+        return PLEIN;
     }
     //on verifie si l'element est present,
     // a  la fin, i est l'index
-    int d = currentCard/2;
-    int i = d;
-    while( d!=0 )
+    for (int i = 0; i < currentCard; i++)
     {
-        d =  d/2;
-        int n = this->elements[i];
-        if(n == aAjouter){
-            return crduAjouter::DEJA_PRESENT;
-        }else if(aAjouter > n)
+        if (elements[i] == aAjouter)
         {
-            i-= d;
-        }else{
-            i+= d;
+            return DEJA_PRESENT;
         }
     }
-    if(this->cardMax > this->currentCard)
+    if (this->cardMax > this->currentCard)
     {
-        elements[currentCard]=aAjouter;
+        elements[currentCard] = aAjouter;
+        this->currentCard++;
         this->bubbleSort();
-        return crduAjouter::AJOUTE;
-    } else{
+        return AJOUTE;
+    } else
+    {
         //renvoyer plein
-        return crduAjouter::PLEIN;
+        return PLEIN;
     }
 }
 
 bool Ensemble::EstEgal(const Ensemble &unEnsemble) const
 {
-    if (Ensemble->currentCard != unEnsemble.currentCard) return false;
+    if (this->currentCard != unEnsemble.currentCard) return false;
 
-    
-    for (int i = 0; i < Ensemble.currentCard; i++)
+
+    for (int i = 0; i < this->currentCard; i++)
     {
-        if (Ensemble->elements[i] != unEnsemble->elements[i])
+        if (this->elements[i] != unEnsemble.elements[i])
         {
             return false;
         }
@@ -112,11 +107,11 @@ void Ensemble::bubbleSort()
         flag = 0;
         for (j = 0; j < (numLength - 1); j++)
         {
-            if (num[j + 1] > num[j])      // ascending order simply changes to <
+            if (elements[j + 1] < elements[j])      // ascending order simply changes to <
             {
-                temp = num[j];             // swap elements
-                num[j] = num[j + 1];
-                num[j + 1] = temp;
+                temp = elements[j];             // swap elements
+                elements[j] = elements[j + 1];
+                elements[j + 1] = temp;
                 flag = 1;               // indicates that a swap occurred.
             }
         }

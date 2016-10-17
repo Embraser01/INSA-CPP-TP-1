@@ -18,18 +18,19 @@
 
 using namespace std;
 
-enum crduEstInclus {
+enum crduEstInclus
+{
     NON_INCLUSION,
     INCLUSION_LARGE,
     INCLUSION_STRICTE
 };
 
-enum crduAjouter {
+enum crduAjouter
+{
     DEJA_PRESENT,
     PLEIN,
     AJOUTE
 };
-
 
 
 class Ensemble
@@ -45,11 +46,11 @@ public:
 
     bool EstEgal(const Ensemble &unEnsemble) const;
 
-    crduEstInclus EstInclus (const Ensemble & unEnsemble) const;
+    crduEstInclus EstInclus(const Ensemble &unEnsemble) const;
 
-    crduAjouter Ajouter (int aAjouter);
-//
-//    unsigned int Ajuster (int delta);
+    crduAjouter Ajouter(int aAjouter);
+
+    unsigned int Ajuster(int delta);
 //
 //    bool Retirer (int element);
 //

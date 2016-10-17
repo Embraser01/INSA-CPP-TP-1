@@ -120,46 +120,25 @@ void Ensemble::bubbleSort()
 }
 
 
-bool Ensemble::EstInclus(const Ensemble &unEnsemble) const {
-    if (EstEgal(unEnsemble)) {
+crduEstInclus Ensemble::EstInclus(const Ensemble &unEnsemble) const
+{
+    if (EstEgal(unEnsemble))
+    {
         return INCLUSION_LARGE;
     }
-    int j=0;
-    for (int i = 0; i<currentCard; i++){
+    int j = 0;
+    for (int i = 0; i < currentCard; i++)
+    {
         // Tab triés donc pas de réinitialisation
-        for (j; elements[j]<elements[i]; j++){}
-        if (elements[i]!=elements[j]){
+        for (j; unEnsemble.elements[j] < elements[i]; j++)
+        {}
+        if (elements[i] != unEnsemble.elements[j])
+        {
             return NON_INCLUSION;
         }
     }
     return INCLUSION_STRICTE;
 }
-
-
-void Ensemble::bubbleSort()
-{
-    // From http://mathbits.com/MathBits/CompSci/Arrays/Bubble.htm
-
-    int i, j, flag = 1;    // set flag to 1 to start first pass
-    int temp;             // holding variable
-    int numLength = this->currentCard;
-    for (i = 1; (i <= numLength) && flag; i++)
-    {
-        flag = 0;
-        for (j = 0; j < (numLength - 1); j++)
-        {
-            if (elements[j + 1] < elements[j])      // ascending order simply changes to <
-            {
-                temp = elements[j];             // swap elements
-                elements[j] = elements[j + 1];
-                elements[j + 1] = temp;
-                flag = 1;               // indicates that a swap occurred.
-            }
-        }
-    }
-    return;   //arrays are passed to functions by address; nothing is returned
-}
-
 
 Ensemble::~Ensemble()
 {

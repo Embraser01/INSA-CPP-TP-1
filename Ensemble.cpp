@@ -7,3 +7,9 @@ Ensemble ::Ensemble(unsigned int cardMax) {
     collection = new int [cardMax];
 }
 
+
+
+Ensemble::Ensemble(int *t, unsigned int nbElements)
+{
+
+}

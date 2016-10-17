@@ -28,24 +28,24 @@ public:
 
     virtual ~Ensemble();
 
-    voidAfficher (void);
+    void Afficher (void);
 
     bool EstEgal (const Ensemble & unEnsemble) const;
 
-    crduEstInclus EstInclus (const Ensemble & unEnsemble) const;
-
-    crduAjouter Ajouter (int aAjouter);
-
-    unsigned int Ajuster (int delta);
-
-    bool Retirer (int element);
-
-    unsigned int Retirer (const Ensemble & unEnsemble);
-
-
-    int Reunir (const Ensemble & unEnsemble);
-
-    unsigned int Intersection (const Ensemble & unEnsemble);
+//    crduEstInclus EstInclus (const Ensemble & unEnsemble) const;
+//
+//    crduAjouter Ajouter (int aAjouter);
+//
+//    unsigned int Ajuster (int delta);
+//
+//    bool Retirer (int element);
+//
+//    unsigned int Retirer (const Ensemble & unEnsemble);
+//
+//
+//    int Reunir (const Ensemble & unEnsemble);
+//
+//    unsigned int Intersection (const Ensemble & unEnsemble);
 
 private:
     int cardMax;

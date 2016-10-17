@@ -11,6 +11,8 @@
 #ifndef TP_C_ENSEMBLE_H
 #define TP_C_ENSEMBLE_H
 
+#define CARD_MAX 5
+
 
 #include <iostream>
 
@@ -44,6 +46,11 @@ public:
     int Reunir (const Ensemble & unEnsemble);
 
     unsigned int Intersection (const Ensemble & unEnsemble);
+
+private:
+    int cardMax;
+    int currentCard;
+    int elements;
 };
 
 #endif //TP_C_ENSEMBLE_H

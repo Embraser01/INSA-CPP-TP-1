@@ -119,6 +119,7 @@ unsigned int Ensemble::Ajuster(int delta) {
         nouveauEnsemble[i] = elements[i];
     }
     cardMax = nouvelleCard;
+    delete[] elements;// gare aux fuites de memeoire
     elements = nouveauEnsemble;
 
     return cardMax;
@@ -160,6 +161,7 @@ bool Ensemble::Retirer(int element) {
             nouveauEnsemble[j++]=n;
         }
     }
+    delete[] elements;
     elements = nouveauEnsemble;
     currentCard--;
     cardMax = currentCard;

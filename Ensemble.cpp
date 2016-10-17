@@ -169,6 +169,26 @@ crduEstInclus Ensemble::EstInclus(const Ensemble &unEnsemble) const
     return INCLUSION_STRICTE;
 }
 
+unsigned int Ensemble::Retirer(const Ensemble &unEnsemble)
+{
+    int a = CARD_MAX;
+    int k=0;
+    for (int i; i < unEnsemble.cardMax; i++)
+    {
+        if (Retirer(unEnsemble.elements[i])){
+            k++;
+        }
+    }
+    Ajuster(a - cardMax);
+    return (k);
+}
+
+unsigned int Ensemble::Intersection(const Ensemble &unEnsemble)
+{
+
+
+}
+
 Ensemble::~Ensemble()
 {
     delete[] this->elements;

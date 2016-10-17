@@ -16,7 +16,7 @@ Ensemble::Ensemble(int *t, unsigned int nbElements)
 
     this->elements = new int[nbElements];
     this->cardMax = nbElements;
-    this->currentCard = nbElements;
+    this->currentCard = 0;
 
     for (int i = 0; i < nbElements; i++)
     {
@@ -48,6 +48,18 @@ void Ensemble::Afficher()
 
     cout << "}\r\n";
 
+}
+
+bool Ensemble::EstEgal(const Ensemble &unEnsemble) const {
+    if(Ensemble->cardMax != unEnsemble.cardMax || Ensemble->currentCard!=unEnsemble.currentCard){
+        return false;
+    }
+    for (int i=0;i<Ensemble.currentCard;i++){
+        if (Ensemble->elements[i] != unEnsemble->elements[i]){
+            return false;
+        }
+    }
+    return true;
 }
 
 Ensemble::~Ensemble()

@@ -186,7 +186,6 @@ bool Ensemble::Retirer(int element)
         elements = new int[0];
         return false;
     }
-    //maintenant on est sur que element est contenu dans notre ensemble
     int *nouveauEnsemble = new int[currentCard - 1];
     int j = 0;
     int i = 0;
@@ -216,19 +215,47 @@ bool Ensemble::Retirer(int element)
 
 unsigned int Ensemble::Retirer(const Ensemble &unEnsemble)
 {
-    if (unEnsemble.currentCard==0|| unEnsemble.cardMax ==0){return 0;}
-    int a = cardMax;
-    int k=0;
-    for (int i=0; i < unEnsemble.cardMax; i++)
+    if (unEnsemble.currentCard == 0 || unEnsemble.cardMax == 0 || currentCard == 0)
     {
-        if (Retirer(unEnsemble.elements[i])){
-            k++;
+        return 0;
+    }
+
+    int *nouveauEnsemble = new int[cardMax];
+
+    int i = 0;
+    int j = 0;
+
+    int nbDeleted = 0;
+    int n;
+    bool flag;
+
+    for (; i < currentCard; i++)
+    {
+        n = elements[i];
+        flag = false;
+
+        for (int k = 0; k < unEnsemble.currentCard && !flag; ++k)
+        {
+            if (n == unEnsemble.elements[k])
+            {
+                nbDeleted++;
+                flag = true;
+            }
+        }
+
+        if (!flag) // Si l'élément n'est pas dans unEnsemble
+        {
+            // AutoIncrement
+            nouveauEnsemble[j++] = n;
         }
     }
-    Ajuster(a - cardMax);
-    return (k);
-}
 
+    currentCard = j;
+
+    delete[] elements;
+    elements = nouveauEnsemble;
+    return nbDeleted;
+}
 
 
 void Ensemble::bubbleSort()
@@ -254,6 +281,50 @@ void Ensemble::bubbleSort()
     }
     return;   //arrays are passed to functions by address; nothing is returned
 }
+
+
+unsigned int Ensemble::Intersection(const Ensemble &unEnsemble)
+{
+
+    int *nouveauEnsemble = new int[cardMax];
+
+    int i = 0;
+    int j = 0;
+
+    int nbDeleted = 0;
+    int n;
+    bool flag;
+
+    for (; i < currentCard; i++)
+    {
+        n = elements[i];
+        flag = false;
+
+        for (int k = 0; k < unEnsemble.currentCard && !flag; ++k)
+        {
+            if (n == unEnsemble.elements[k])
+            {
+                // AutoIncrement
+                nouveauEnsemble[j++] = n;
+                flag = true;
+            }
+        }
+
+        if (!flag) // Si l'élément n'est pas dans unEnsemble
+        {
+            nbDeleted++;
+        }
+    }
+
+    currentCard = j;
+
+    delete[] elements;
+    elements = nouveauEnsemble;
+
+    Ajuster(currentCard - cardMax);
+    return nbDeleted;
+}
+
 
 Ensemble::~Ensemble()
 {

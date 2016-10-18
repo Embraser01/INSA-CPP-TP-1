@@ -18,7 +18,7 @@ Ensemble::Ensemble(int *t, unsigned int nbElements)
     this->cardMax = nbElements;
     this->currentCard = 0;
 
-    for (int i = 0; i < nbElements; i++)
+    for (unsigned int i = 0; i < nbElements; i++)
     {
         this->Ajouter(t[i]);
     }
